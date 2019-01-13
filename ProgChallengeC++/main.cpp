@@ -50,7 +50,8 @@ int main(int argc, const char * argv[]) {
     //differenceOfSquares(sumOfSquares(100), squareOfSums(100));
     stringReverse("hello");
     scrambleString("hello");
-    palindromeString("hello");
+    palindromeString("abbaca");
+ 
     
    
     return 0;
@@ -266,12 +267,12 @@ void differenceOfSquares(int num, int num2){
 //void pythagoreanTriplet(){
 //        //a^2 + b^2 -c^2 == 0
 //    int a = 2; int b = 3; int c = 4;
-//    
-// 
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//
+//
 //}
 
 
@@ -303,44 +304,41 @@ void scrambleString(string str){
     random_shuffle(str.begin(), str.end());
     cout << "The scrambled string is " << str << endl;
 }
-/* takes a string and return the palindromes in the string greater than 2 */
+/* takes a string and return the palindromes in the string greater than 2
+ example string "abbaca" would return ["abba", "bb", "aca"]
+ */
 
-//
-//string * palindromeString(string str){
-//    int index = 0;
-//    int secondIndex = 1;
-//    int len = int(str.length());
-//    cout << str.length() <<endl;;
-//    static string stringCollection [10]; //should be a vector
-//    string tempStr = "";
-//    string secondTempStr = "";
-//    for(int i = 0; i < 5; i++){
-//        tempStr = tempStr + str;
-//        cout << tempStr;
-////        if(palindromeString(tempStr)){
-////            stringCollection[index] = tempStr;
-////            index++;
-////        }
-//////        for(int j = 0; j < 5; j++){
-////            secondTempStr = secondTempStr + str[j];
-////           // secondIndex--;
-////        }
-//        str = secondTempStr;
-//    }
-//  //  for(int i = 0; i < sizeof(stringCollection); i++)
-//    //    cout << stringCollection[i];
-//    return stringCollection;
-//}
-///* returns true if a string is a palindrome */
-//bool stringPalindromeChecker(string str){
-//    string reversedStr = "";
-//    for(int i = 0; i < str.length(); i++){
-//        reversedStr = reversedStr + str[(str.length()-1)-i];
-//
-//    }
-//    if (str.compare(reversedStr) == 0)
-//        return true;
-//    else
-//        return false;
-//
-//}
+
+string * palindromeString(string str){
+    int index = 0;
+    static string stringCollection [10]; //should be a vector
+    string tempString = "";
+    for(int i = 0; i < str.length(); i++){
+        tempString = tempString + str[i];
+        if(tempString.length()>1){
+            if(stringPalindromeChecker(tempString)){
+                cout << "Located a palindrome in string " << str << ": " << tempString <<endl;
+                stringCollection[index] = tempString;
+                index++;
+            }
+        }
+        
+    }
+
+    for(int i = 0; i < sizeof(stringCollection); i++)
+        cout << stringCollection[i] << endl;
+    return stringCollection;
+}
+/* returns true if a string is a palindrome */
+bool stringPalindromeChecker(string str){
+    string reversedStr = "";
+    for(int i = 0; i < str.length(); i++){
+        reversedStr = reversedStr + str[(str.length()-1)-i];
+
+    }
+    if (str.compare(reversedStr) == 0)
+        return true;
+    else
+        return false;
+
+}
